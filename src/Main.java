@@ -1,8 +1,3 @@
-    import javax.swing.text.TabableView;
-    import java.io.*;
-    import java.util.Arrays;
-    import java.util.Scanner;
-    import java.lang.String;
 
     public class Main {
         public static void main(String[] args) {
@@ -32,11 +27,5 @@
             // Проверка размера хеш-таблицы
             System.out.println("Size of the table: " + studentTable.size()); // Ожидается 3 (три студента после удаления)
 
-            // Добавление случайных данных в хеш-таблицу
-            for (int i = 0; i < 10000; i++) {
-                String studentID = "student_" + (i + 10); // Создаем уникальные идентификаторы студентов
-                String studentName = "Student_" + (i + 10); // Имена студентов
-                studentTable.put(studentID, studentName);
-            }
         }
     }

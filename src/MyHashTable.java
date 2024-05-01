@@ -32,12 +32,15 @@ public class MyHashTable <K,V> {
     }
 
     private int hash(K key) {
-        return key == null ? 0 : (key.hashCode() % M) ;
+        return (key.hashCode() & 0x7FFFFFFF) % M  ;
     }
 
     public void put(K key, V value) {
         int bucketindex = hash(key);
         HashNode<K,V> head = chainArray[bucketindex];
+        if (bucketindex < 0 || bucketindex >= chainArray.length) {
+            throw new IndexOutOfBoundsException("Invalid bucket index: " + bucketindex);
+        }
         while (head!=null){
             if(head.key.equals(key)){
                 head.value = value;
@@ -55,7 +58,7 @@ public class MyHashTable <K,V> {
     public V get(K key) {
         int bucketindex = hash(key);
         HashNode<K,V> head = chainArray[bucketindex];
-        while (key != null){
+        while (head != null){
             if(head.key.equals(key)){
                 return head.value;
             }
